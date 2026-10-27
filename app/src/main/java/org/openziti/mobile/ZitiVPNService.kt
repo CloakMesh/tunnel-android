@@ -331,7 +331,7 @@ class ZitiVPNService : VpnService(), CoroutineScope {
         val channelId = "Ziti Mobile Edge"
         val channel = NotificationChannel(
             channelId,
-            "Firewall Status",
+            getString(R.string.notification_channel_name),
             NotificationManager.IMPORTANCE_DEFAULT
         )
         val manager = getSystemService(NotificationManager::class.java)
@@ -343,8 +343,8 @@ class ZitiVPNService : VpnService(), CoroutineScope {
         )
 
         return NotificationCompat.Builder(this, channelId)
-            .setContentTitle("Ziti Mobile Edge")
-            .setContentText("Ziti is active")
+            .setContentTitle(getString(R.string.notification_title))
+            .setContentText(getString(R.string.notification_active))
             .setSmallIcon(R.drawable.z)
             .setContentIntent(pendingIntent)
             .build()

@@ -303,13 +303,13 @@ fun URLDialog(onConfirm: (str: String?) -> Unit) {
                             .onFailure { urlError = true }
                     },
                     isError = urlError,
-                    label = { Text("Controller URL") },
+                    label = { Text(stringResource(R.string.controller_url)) },
                     modifier = Modifier.weight(1F)
                 )
                 clippy.getText()?.let {
                     if (it.text.startsWith("https://")) {
                         TextButton(onClick = { url = it.text }) {
-                            Text(text = "Paste URL\nyou copied")
+                            Text(text = stringResource(R.string.paste_url))
                         }
                     }
                 }

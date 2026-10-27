@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  CloakMesh 白标资源覆盖：只覆盖品牌相关字符串，其余沿用上游默认值。
-  由 whitelabel.properties 的 resourceDir 指向本目录，构建时按 product flavor 合并。
+  CloakMesh 白标资源覆盖（英文默认值）
+  只覆盖品牌相关与新增文案，其余沿用上游 values/strings.xml。
 -->
 <resources>
     <string name="app_name">CloakMesh Mobile Edge</string>
     <string name="name">CloakMesh Mobile Edge</string>
-    <string name="supportEmailSubject">CloakMesh 支持(Android)</string>
+    <string name="supportEmailSubject">CloakMesh Support (Android)</string>
     <string name="logo_desc">CloakMesh Logo</string>
+
+    <!-- 新增：上游硬编码在代码里的文案，改为资源以便本地化 -->
+    <string name="notification_title">CloakMesh Mobile Edge</string>
+    <string name="notification_active">Tunnel is active</string>
+    <string name="notification_channel_name">Tunnel Status</string>
+    <string name="controller_url">Controller URL</string>
+    <string name="paste_url">Paste URL\nyou copied</string>
 </resources>

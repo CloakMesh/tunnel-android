@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CloakMesh 自适应图标：前景为盾形+网格节点，背景为深蓝纯色 -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/cloakmesh_ic_background"/>
+    <foreground android:drawable="@drawable/cloakmesh_ic_foreground"/>
+</adaptive-icon>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CloakMesh 简体中文资源（values-zh）
+  设备语言为中文时生效；未翻译的条目自动回落到上游 values/strings.xml 的英文。
+-->
+<resources>
+    <!-- 主界面 -->
+    <string name="mainmenu">主菜单</string>
+    <string name="identity">添加身份</string>
+    <string name="download">下载速率</string>
+    <string name="upload">上传速率</string>
+    <string name="speed">Mbps</string>
+    <string name="yours">我的身份</string>
+    <string name="details">详情</string>
+    <string name="auth_status">认证状态</string>
+    <string name="name">CloakMesh Mobile Edge</string>
+    <string name="platform">Android 版</string>
+    <string name="stop">停止</string>
+    <string name="start">启动隧道</string>
+    <string name="main_title">点击连接</string>
+    <string name="identities">身份</string>
+    <string name="identity_detail">身份详情</string>
+    <string name="enrollmentstatus">登记状态</string>
+    <string name="forget">忘记此身份</string>
+    <string name="offline">离线</string>
+    <string name="disabled">已禁用</string>
+    <string name="ext_login">外部登录</string>
+
+    <!-- 导航与通用 -->
+    <string name="dashboard">仪表盘</string>
+    <string name="advanced">高级</string>
+    <string name="about">关于</string>
+    <string name="feedback">反馈</string>
+    <string name="support">支持</string>
+    <string name="back">返回</string>
+    <string name="save">保存</string>
+    <string name="copy">复制</string>
+    <string name="privacy">隐私政策</string>
+    <string name="terms">服务条款</string>
+    <string name="thirdparty">第三方许可</string>
+    <string name="esc">ESC</string>
+    <string name="cardname">名称</string>
+    <string name="network">网络</string>
+    <string name="status">状态</string>
+    <string name="services">服务</string>
+
+    <!-- 隧道配置 -->
+    <string name="tunnel">隧道配置</string>
+    <string name="ip">IP 地址</string>
+    <string name="subnet">子网掩码</string>
+    <string name="mtu">MTU</string>
+    <string name="dns">DNS 服务器</string>
+    <string name="advancedoptions">高级选项</string>
+    <string name="tunnelsub">高级隧道设置，会影响隧道的可用性与性能。</string>
+
+    <!-- 日志 -->
+    <string name="logs">日志</string>
+    <string name="logssub">诊断日志，出现问题时用于协助定位。</string>
+    <string name="logspacket">调试信息</string>
+    <string name="logspacketsub">数据包隧道模块的日志</string>
+    <string name="logsapplication">应用日志</string>
+    <string name="logsapplicationsub">本应用的日志</string>
+    <string name="title_activity_debug_info">调试信息</string>
+
+    <!-- 添加身份 -->
+    <string name="add_identity">添加身份</string>
+    <string name="keytitle">选择密钥文件</string>
+    <string name="keysubtitle">在手机上选择</string>
+    <string name="keyimage">选择 JWT 按钮</string>
+    <string name="keyaction">选择 JWT 文件</string>
+    <string name="qrtitle">扫描二维码</string>
+    <string name="qrsubtitle">用相机或扫码应用</string>
+    <string name="qrimage">扫码</string>
+    <string name="qraction">扫描二维码</string>
+    <string name="enroll_with_url">输入 URL</string>
+
+    <!-- 品牌与其它 -->
+    <string name="app_name">CloakMesh Mobile Edge</string>
+    <string name="supportEmailSubject">CloakMesh 支持(Android)</string>
+    <string name="logo_desc">CloakMesh 标志</string>
+    <string name="defults">0.0</string>
+    <string name="defaultTime">00:00:00</string>
+
+    <!-- 新增：上游硬编码文案的中文版 -->
+    <string name="notification_title">CloakMesh Mobile Edge</string>
+    <string name="notification_active">隧道已连接</string>
+    <string name="notification_channel_name">隧道状态</string>
+    <string name="controller_url">控制器 URL</string>
+    <string name="paste_url">粘贴已复制的\nURL</string>
+</resources>
