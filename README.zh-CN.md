@@ -12,7 +12,8 @@ CloakMesh 的 Android 客户端，fork 自 [OpenZiti ziti-tunnel-android](https:
 | 应用显示名 | Ziti Mobile Edge | CloakMesh Mobile Edge | `whitelabel/cloakmesh/res/values/strings.xml` |
 | 构建变体 | 无 flavor | `cloakmesh` flavor（`assembleCloakmeshDebug/Release`） | 同上 |
 | 中文文档 + 构建脚本 | — | `README.zh-CN.md` + `scripts/build-android.sh` | — |
-| 中文界面 | — | 未做（约 100 条字符串，需加 `values-zh/strings.xml`） | ⏳ |
+| 中文界面 | — | 简体中文（65 条全量翻译，`app/src/cloakmesh/res/values-zh`） | ✅ |
+| 应用图标 | Z 字样图标 | 盾形 + 网格节点（自适应图标 + 5 密度 PNG + 通知栏单色标识） | ✅ |
 
 上游本来就提供白标能力（见 `WhiteLabeling.md`），所以这是**官方支持的品牌化路径**，不会和上游代码产生冲突。
 
@@ -131,9 +132,15 @@ docker compose -f ../cloakmesh-core/deploy/linux/docker-compose.yml \
 
 想跳过原生依赖构建（例如原生库已构建过）可用：`-PskipDependentBuild`。
 
-## 已知限制
+## 中文界面与图标
 
-- **中文界面未做**：上游字符串未走 `strings.xml` 全量外部化，需先补齐再用 `values-zh` 覆盖，属独立工作项。
+- **中文**：`app/src/cloakmesh/res/values-zh/strings.xml`，跟随系统语言；也可在 Android 13+ 的「设置 → 应用 → CloakMesh Mobile Edge → 语言」单独指定。
+- **图标**：由 `tools/gen-icons.py` 生成（盾形 + 网格节点，深蓝底 `#0B1622` + 青绿 `#2EE6C5`），覆盖自适应图标、传统 mipmap、通知栏图标（`drawable/z.png`）与仪表盘 logo（`appicon.png`）。
+- 改图标只需调 `tools/gen-icons.py` 里的颜色/形状，然后 `python3 tools/gen-icons.py` 重新生成。
+
+> **坑（已修）**：`whitelabel.properties` 的 `resourceDir` **相对路径按 app 模块目录解析**。早期写成仓库根的 `whitelabel/cloakmesh/res`，导致资源根本没合并——表现为新增字符串在 R 里 unresolved、图标和翻译都不生效。正确写法是 `resourceDir=src/cloakmesh/res`（即 `app/src/cloakmesh/res`）。
+
+## 已知限制
 - **签名需自备**：官方 keystore 不提供；自签的包不能与 App Store 版本共存（applicationId 不同则互不影响）。
 - **NDK 版本敏感**：`ndkVersion` 写死在 `gradle/libs.versions.toml`，升级上游时若未同步安装对应 NDK 会直接构建失败。
 
