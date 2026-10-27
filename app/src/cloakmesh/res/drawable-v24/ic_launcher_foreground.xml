@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CloakMesh 自适应图标前景：盾形 + 网格节点 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:pathData="M54,30 L74,38 L74,56 C74,68 66,76 54,82 C42,76 34,68 34,56 L34,38 Z"
+        android:strokeColor="#2EE6C5" android:strokeWidth="3"
+        android:strokeLineJoin="round" android:fillColor="#00000000"/>
+    <path android:pathData="M54,44 L46,60 M54,44 L62,60 M46,60 L62,60"
+        android:strokeColor="#2EE6C5" android:strokeWidth="2"/>
+    <path android:pathData="M50,44 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+        android:fillColor="#F5FFFD"/>
+    <path android:pathData="M42,60 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+        android:fillColor="#F5FFFD"/>
+    <path android:pathData="M58,60 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+        android:fillColor="#F5FFFD"/>
+</vector>

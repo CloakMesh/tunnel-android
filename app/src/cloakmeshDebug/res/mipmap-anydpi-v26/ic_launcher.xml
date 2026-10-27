@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CloakMesh Debug 变体的自适应图标。
+  上游 app/src/debug/res/mipmap-anydpi-v26/ 里有同名文件且引用 debug 专用 drawable/ic_launcher.png，
+  而 buildType 源集优先级高于 flavor，因此必须在变体源集里覆盖，否则图标仍是旧版 Z。
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/cloakmesh_ic_background"/>
+    <foreground android:drawable="@drawable/cloakmesh_ic_foreground"/>
+</adaptive-icon>
