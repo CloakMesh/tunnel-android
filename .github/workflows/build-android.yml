@@ -42,12 +42,18 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            autoconf autoconf-archive automake libtool pkg-config build-essential
+            autoconf autoconf-archive automake libtool pkg-config build-essential \
+            ninja-build curl zip unzip tar
 
-      - name: Show vcpkg
+      # runner 预装的 /usr/local/share/vcpkg 是裁剪副本，缺少 tunnel/vcpkg.json 里
+      # builtin-baseline 指定的提交（20ceb8ad…），会报 "failed to git show versions/baseline.json"。
+      # 这里自建一份完整克隆，确保基线提交可用。
+      - name: Prepare vcpkg (full clone)
         run: |
-          echo "VCPKG_ROOT=${VCPKG_INSTALLATION_ROOT}"
-          echo "VCPKG_ROOT=${VCPKG_INSTALLATION_ROOT}" >> "$GITHUB_ENV"
+          git clone --quiet https://github.com/microsoft/vcpkg.git "$RUNNER_TEMP/vcpkg"
+          "$RUNNER_TEMP/vcpkg/bootstrap-vcpkg.sh" -disableMetrics
+          echo "VCPKG_ROOT=$RUNNER_TEMP/vcpkg" >> "$GITHUB_ENV"
+          "$RUNNER_TEMP/vcpkg/vcpkg" version
 
       - name: Build white-label debug APK
         run: |
