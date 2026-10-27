@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CloakMesh 白标 Debug 变体的应用名。
+  上游 app/src/debug/res/values/strings.xml 把 app_name 固定成 "ZME Debug"，
+  而 buildType 资源优先级高于 flavor 资源，因此这里用变体级 source set 覆盖。
+-->
+<resources>
+    <string name="app_name">CloakMesh Mobile Edge</string>
+</resources>
