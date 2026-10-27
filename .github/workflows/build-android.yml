@@ -21,17 +21,21 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
+      # 直接用 runner 预装的 SDK：android-actions/setup-android@v3 会尝试安装已下架的
+      # "tools" 包而失败（Failed to find package 'tools'），这里不再依赖该 action。
       - name: Install SDK components
         run: |
-          sdkmanager --install \
+          export ANDROID_HOME="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          SDKMANAGER="$(ls -d "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager | head -1)"
+          echo "using $SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses >/dev/null || true
+          "$SDKMANAGER" --install \
             'platforms;android-37.0' \
             'build-tools;37.0.0' \
             'ndk;30.0.16248370' \
             'cmake;4.1.2'
-          yes | sdkmanager --licenses >/dev/null
+          echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> "$GITHUB_ENV"
 
       - name: Show vcpkg
         run: |
