@@ -16,3 +16,15 @@ release/
 
 
 /whitelabel.properties
+
+# 构建产物
+build/
+app/build/
+tunnel/build/
+.gradle/
+local.properties
+
+# 白标签名/本地配置（不入库）
+*.keystore
+*.jks
+whitelabel-*.properties
