@@ -37,6 +37,13 @@ jobs:
           echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
           echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> "$GITHUB_ENV"
 
+      # vcpkg 构建 libsodium 需要宿主的 autoconf/automake/libtool（runner 未预装齐全）
+      - name: Install host build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            autoconf autoconf-archive automake libtool pkg-config build-essential
+
       - name: Show vcpkg
         run: |
           echo "VCPKG_ROOT=${VCPKG_INSTALLATION_ROOT}"
