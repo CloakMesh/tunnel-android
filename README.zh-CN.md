@@ -82,6 +82,27 @@ export RELEASE_KEY_PASSWORD=...
 ./scripts/build-android.sh release
 ```
 
+### 用 GitHub Actions 出包（推荐，不需要本地工具链）
+
+本机若没有 Android 原生工具链（vcpkg 需要的 autoconf/automake/libtool 等），可直接用 CI：
+
+- 工作流：`.github/workflows/build-android.yml`
+- 触发：push 到 `main` 或手动 `workflow_dispatch`
+- 产物：artifact `cloakmesh-debug-apk`（含 APK 与 `SHA256SUMS.txt`）
+
+CI 里已经处理好的环境细节（都不需要你操心）：
+
+| 环境 | 处理方式 |
+|---|---|
+| `android-actions/setup-android@v3` 失败 | 该 action 会装已下架的 `tools` 包，改为直接用 runner 预装 SDK |
+| vcpkg baseline 找不到 | runner 预装的 vcpkg 是裁剪副本，CI 里自建完整克隆 |
+| libsodium 构建失败 | 补装 `autoconf autoconf-archive automake libtool pkg-config ninja-build` |
+| 版本号变成 `0.0.0-local` | checkout 用 `fetch-depth: 0` 取全量 tag，`git describe` 才有输出 |
+
+实测（2026-10-27）：CI 构建成功，产出 `ziti-mobile-edge-cloakmesh-debug.apk`
+（applicationId `com.cloakmesh.mobile.debug`，versionName `v0.25.0-16-g78f4022-debug`，含 arm64-v8a / armeabi-v7a / x86），
+已在 arm64 API 35 模拟器安装并启动，主界面正常、无崩溃。
+
 ## 安装与首次运行
 
 ```bash
