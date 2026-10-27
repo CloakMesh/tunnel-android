@@ -1,0 +1,57 @@
+name: build-android
+
+# 用途：在没有本地 Android 工具链的机器上产出白标 APK。
+# 产出：workflow artifact "cloakmesh-debug-apk"（保留 14 天），也可在 Release 时自动附到 release。
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install SDK components
+        run: |
+          sdkmanager --install \
+            'platforms;android-37.0' \
+            'build-tools;37.0.0' \
+            'ndk;30.0.16248370' \
+            'cmake;4.1.2'
+          yes | sdkmanager --licenses >/dev/null
+
+      - name: Show vcpkg
+        run: |
+          echo "VCPKG_ROOT=${VCPKG_INSTALLATION_ROOT}"
+          echo "VCPKG_ROOT=${VCPKG_INSTALLATION_ROOT}" >> "$GITHUB_ENV"
+
+      - name: Build white-label debug APK
+        run: |
+          chmod +x ./gradlew
+          ./gradlew --no-daemon -Pcmake.version=4.1.2 assembleCloakmeshDebug
+
+      - name: Collect APK
+        run: |
+          mkdir -p out
+          find . -name '*.apk' -path '*cloakmesh*' -exec cp {} out/ \;
+          ls -lh out
+          sha256sum out/*.apk > out/SHA256SUMS.txt || shasum -a 256 out/*.apk > out/SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cloakmesh-debug-apk
+          path: out/
+          if-no-files-found: error
