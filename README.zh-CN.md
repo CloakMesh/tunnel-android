@@ -138,7 +138,9 @@ docker compose -f ../cloakmesh-core/deploy/linux/docker-compose.yml \
 - **图标**：由 `tools/gen-icons.py` 生成（盾形 + 网格节点，深蓝底 `#0B1622` + 青绿 `#2EE6C5`），覆盖自适应图标、传统 mipmap、通知栏图标（`drawable/z.png`）与仪表盘 logo（`appicon.png`）。
 - 改图标只需调 `tools/gen-icons.py` 里的颜色/形状，然后 `python3 tools/gen-icons.py` 重新生成。
 
-> **坑（已修）**：`whitelabel.properties` 的 `resourceDir` **相对路径按 app 模块目录解析**。早期写成仓库根的 `whitelabel/cloakmesh/res`，导致资源根本没合并——表现为新增字符串在 R 里 unresolved、图标和翻译都不生效。正确写法是 `resourceDir=src/cloakmesh/res`（即 `app/src/cloakmesh/res`）。
+> **坑 2（已修）**：上游 `app/src/debug/res/` 里有 debug 专用图标（`drawable/ic_launcher.png` 102KB + 引用它的自适应 XML）。**buildType 源集优先级高于 flavor**，所以白标图标在 debug 包里会被遮蔽——必须在变体源集 `app/src/cloakmeshDebug/res/` 覆盖（应用名同理）。判断方法：看 `app/build/intermediates/merged_res_blame_folder/**/merge-*.json` 里该资源来自哪个源集。
+
+> **坑 1（已修）**：`whitelabel.properties` 的 `resourceDir` **相对路径按 app 模块目录解析**。早期写成仓库根的 `whitelabel/cloakmesh/res`，导致资源根本没合并——表现为新增字符串在 R 里 unresolved、图标和翻译都不生效。正确写法是 `resourceDir=src/cloakmesh/res`（即 `app/src/cloakmesh/res`）。
 
 ## 已知限制
 - **签名需自备**：官方 keystore 不提供；自签的包不能与 App Store 版本共存（applicationId 不同则互不影响）。
