@@ -15,7 +15,8 @@ libs/
 release/
 
 
-/whitelabel.properties
+# CloakMesh：白标配置是本 fork 的品牌定义，必须入库（上游默认忽略）
+!whitelabel.properties
 
 # 构建产物
 build/
