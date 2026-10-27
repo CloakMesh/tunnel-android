@@ -4,7 +4,7 @@ import math, os
 from PIL import Image, ImageDraw
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RES = os.path.join(ROOT, "whitelabel/cloakmesh/res")
+RES = os.path.join(ROOT, "app/src/cloakmesh/res")
 
 BG = (11, 22, 34)          # #0B1622 深蓝
 GLYPH = (46, 230, 197)     # #2EE6C5 青绿
