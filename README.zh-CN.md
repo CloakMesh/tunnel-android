@@ -124,7 +124,7 @@ docker compose -f ../cloakmesh-core/deploy/linux/docker-compose.yml \
     cat /tmp/a.jwt' > android-test.jwt
 ```
 
-把 `android-test.jwt` 导入客户端即可。手机需能访问控制器的 `CLOAKMESH_CTRL_PORT`（默认 1280）与路由器 `CLOAKMESH_ROUTER_PORT`（默认 3022），端口与证书注意事项见 [cloakmesh-core/deploy/linux/README.md](https://github.com/aiuc-labs/cloakmesh-core/blob/main/deploy/linux/README.md)。
+把 `android-test.jwt` 导入客户端即可。手机需能访问控制器的 `CLOAKMESH_CTRL_PORT`（默认 1280）与路由器 `CLOAKMESH_ROUTER_PORT`（默认 3022），端口与证书注意事项见 [cloakmesh-core/deploy/linux/README.md](https://github.com/cloakmesh/core/blob/main/deploy/linux/README.md)。
 
 ## 构建耗时与依赖说明
 
